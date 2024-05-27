@@ -13,10 +13,12 @@ namespace Business.Concrete
     public class CategoryManager : ICategoryService
     {
         private readonly ICategoryDAL _categoryDAL;
+        private readonly ICategoryLangDAL _categorylangDAL;
 
-        public CategoryManager(ICategoryDAL categoryDAL)
+        public CategoryManager(ICategoryDAL categoryDAL, ICategoryLangDAL categorylangDAL)
         {
             _categoryDAL = categoryDAL;
+            _categorylangDAL = categorylangDAL;
         }
 
         public void Create(List<AddCategoryDTO> models)
@@ -31,8 +33,15 @@ namespace Business.Concrete
 
         public GetCategoryDTO GetByLang(Guid Id, string langCode)
         {
-            var result = _categoryDAL.GetCategoryByLang(Id, langCode);
-            return result;
+            var category = _categorylangDAL.Get(x => x.CategoryId == Id && x.LangCode == langCode);
+            GetCategoryDTO getCategoryDTO = new()
+            {
+                Name = category.Name,
+                CategoryId = Id,
+                LangCode = langCode
+            }; 
+
+            return getCategoryDTO;
         }
 
         public async Task Update(Guid Id, List<UpdateCategoryDTO> models)

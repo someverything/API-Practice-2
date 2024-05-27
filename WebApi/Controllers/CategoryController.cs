@@ -38,7 +38,12 @@ namespace WebApi.Controllers
         }
             
         [HttpGet("{Id}")]
-        public IActionResult Get(Guid Id, string langCode) { 
+        public IActionResult Get(Guid Id) {
+            string langCode = Request.Headers.AcceptLanguage;
+            if (langCode != "az" || langCode != "ru-RU" || langCode != "en-US") {
+                var res = _categoryService.GetByLang(Id, "az");
+                return Ok(res);
+            }
             var result = _categoryService.GetByLang(Id, langCode);
             return Ok(result);
         }
