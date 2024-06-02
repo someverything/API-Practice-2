@@ -51,7 +51,7 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 Name = categories.Name,
                 LangCode = LangCode,
-                CategoryId = categories.Id
+                CategoryId = Id
             };
             return GetCategoryDTO;    
         }

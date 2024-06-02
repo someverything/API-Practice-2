@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Category : BaseEntity
+    public class Brand : BaseEntity
     {
-        public ICollection<CategoryLanguage> CategoryLanguages { get; set; }
-        public ICollection<SubCategory> SubCategories { get; set; }
-
+        public string Name { get; set; }
+        public ICollection<Product> Products { get; set; }
 
     }
 }

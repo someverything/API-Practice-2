@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Category : BaseEntity
+    public class SubCategory : BaseEntity
     {
-        public ICollection<CategoryLanguage> CategoryLanguages { get; set; }
-        public ICollection<SubCategory> SubCategories { get; set; }
-
+        public string Name { get; set; }
+        public Guid CategoryId { get; set; }
+        public Category Category { get; set; }
 
     }
 }

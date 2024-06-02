@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530162838_Init-2")]
+    partial class Init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,15 +202,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Specifications");
                 });
@@ -324,17 +322,6 @@ namespace DataAccess.Migrations
                     b.Navigation("subCategory");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Specification", b =>
-                {
-                    b.HasOne("Entities.Concrete.Product", "Product")
-                        .WithMany("Specifications")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Entities.Concrete.SpecificationLang", b =>
                 {
                     b.HasOne("Entities.Concrete.Specification", "Specification")
@@ -377,8 +364,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrete.Product", b =>
                 {
                     b.Navigation("ProductSubCategories");
-
-                    b.Navigation("Specifications");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Specification", b =>
