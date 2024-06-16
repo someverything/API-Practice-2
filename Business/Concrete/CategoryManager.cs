@@ -1,12 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using Entities.DTOs.CategoryDTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -39,7 +33,7 @@ namespace Business.Concrete
                 Name = category.Name,
                 CategoryId = Id,
                 LangCode = langCode
-            }; 
+            };
 
             return getCategoryDTO;
         }

@@ -1,13 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.Validations.FluentValidation;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using FluentValidation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.DependencyResolver
 {
@@ -21,6 +20,14 @@ namespace Business.DependencyResolver
             services.AddScoped<ICategoryLangDAL, EFCategoryLangDAL>();
             services.AddSingleton<ISubCategoryService, SubCategoryManager>();
             services.AddTransient<ISubCategoryDAL, EFSubCategoryDAL>();
+            services.AddScoped<IAuthService, AuthManager>();
+            
+            ValidatorOptions.Global.LanguageManager = new CustomLanguageManager();
+
+            services.AddIdentity<AppUser, AppRole>()
+                    .AddEntityFrameworkStores<AppDbContext>()
+                    .AddDefaultTokenProviders();
+
 
         }
     }

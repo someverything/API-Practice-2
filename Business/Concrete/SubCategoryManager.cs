@@ -1,16 +1,9 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Results.Abstract;
-using Core.Utilities.Results.Concrete;
 using Core.Utilities.Results.Concrete.ErrorResults;
 using Core.Utilities.Results.Concrete.SuccessResults;
 using DataAccess.Abstract;
 using Entities.DTOs.SubCategoryDTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {

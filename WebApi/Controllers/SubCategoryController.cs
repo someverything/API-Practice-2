@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Entities.DTOs.SubCategoryDTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -20,7 +19,7 @@ namespace WebApi.Controllers
         public IActionResult Create(AddSubCategoryDTO model)
         {
             var result = _subCategoryService.Create(model);
-            if(result.Success)
+            if (result.Success)
                 return Ok(result);
             return BadRequest(result);
 

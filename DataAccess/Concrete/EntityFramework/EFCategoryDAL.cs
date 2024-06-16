@@ -2,11 +2,6 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs.CategoryDTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -53,7 +48,7 @@ namespace DataAccess.Concrete.EntityFramework
                 LangCode = LangCode,
                 CategoryId = Id
             };
-            return GetCategoryDTO;    
+            return GetCategoryDTO;
         }
 
         public async Task UpdateCategoryAsync(Guid Id, List<UpdateCategoryDTO> models)
@@ -65,9 +60,9 @@ namespace DataAccess.Concrete.EntityFramework
             context.Categories.Update(category);
             var categoryLanguage = context.CategoryLanguages
                 .Where(x => x.CategoryId == category.Id).ToList();
-            
+
             context.CategoryLanguages.RemoveRange(categoryLanguage);
-            
+
             await context.SaveChangesAsync();
             for (int i = 0; i < models.Count; i++)
             {
