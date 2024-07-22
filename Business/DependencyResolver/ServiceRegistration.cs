@@ -21,7 +21,8 @@ namespace Business.DependencyResolver
             services.AddSingleton<ISubCategoryService, SubCategoryManager>();
             services.AddTransient<ISubCategoryDAL, EFSubCategoryDAL>();
             services.AddScoped<IAuthService, AuthManager>();
-            
+
+
             ValidatorOptions.Global.LanguageManager = new CustomLanguageManager();
 
             services.AddIdentity<AppUser, AppRole>()
